@@ -1,21 +1,17 @@
 # Configuration File
 
-port defound
-
 class Config:
-    DEFAULT_CONFIG = {
-        "DATABASE_URL": "postgresql://mydatabase",
-        "API_KEY": "enter_your_api_key_here",
-        "PORT": 4000
-    }
+    # Admin Options
+    DEFAULT_LIB_ON_UNAVAILABLE = 'tesseract'
+    LIBRARIES_OPTIONS = ['tesseract', 'pytesseract']
 
-    def __init__(self):
-        for k, v in self.DEFAULT_CONFIG.items():
-            setattr(self, k, v.copy())
+    # API Port and Key Management
+    API_PORT = 4000
+    API_KEYS_MANAGEMENT = False
 
-    def load_config(self):
-        "Returns config assigned to the class."
-        return self
-}
+    # Logging
+    LOGFILE = 'image_to_text.applog'
+    OUTPUT = 'api_responses.applog'
+
 
 config = Config()
