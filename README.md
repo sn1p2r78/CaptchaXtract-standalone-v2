@@ -1,27 +1,28 @@
-# CaptchaXtract-Standalone-V2
+# CaptchaXXtract-Standalone-v2
 
-This is version 2 of the CaptchaXtract standalone application.
+This project includes the following new features:
 
-## Features
+## Image-to-Text Service
 
-- User management (edit, block, remove)
-- API key generation and validation
-- Asynchronous Task queue for processing with new submit-task and get-result endpoints
-- User friendly web-based panel with statistics and task monitoring
+An image-to-text service with multithreading support. This service provides the following API endpoints:
 
-
-## Usage
-
-````sh
-pip install captchakxtract-standalone-v2
+** /submit-task - Submit an image to process. Syntax:
+```json
+"/task": "post",
+"data": "<string>" #Image file or base64 encoded data
 ```
 
-## User API:
-
-
-```curl
--- request with sample request body
-
-   "api_key": "api-key-sample",
-   "image_base64": "base64 image"
+** /get-result - Fetch the result of submitted task. Syntax:
+```json
+"/task/{task_id}": "get"
 ```
+
+## Workflow and Multithreading
+
+Implements use a background thread to process multiple images simultaneously. Example:
+
+## Admin Panel
+
+The admin panel now includes management features for the image-to-text service, as well as settings and status.
+
+Please see the [admin panel](link) file for details.
