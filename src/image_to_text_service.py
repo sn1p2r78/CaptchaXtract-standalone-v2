@@ -1,4 +1,4 @@
-## Image to Text Service with Integrations
+## Image to Text Service with API Key Validation
 
 # Imports
 import threading
@@ -6,35 +6,39 @@ import time
 import json
 import servlet
 from config import Config
+from auth import generate_api_key
 
 # Configuration instance
 config = Config()
 
-# Storing tasks and using id to accomplish process
+# Storing tasks and validating api keys
 tasks = {}
+api_keys = {generate_api_key(): "valid", generate_api_key(): "valid2"}
 
 def image_to_text(id, image_data):
-    ## Image to text processing for tasks using threads.
+    ## Image to text processing with api key validation.
     time.sleep(1)
     tasks[id] = "Result text successfully processed"
-    return {} # Example status
+    return {}
 
-
-// Endpoint for submiting a task
-def submit_task(image_data):
+# Endpoint for submiting a task
+def submit_task(api_key, image_data):
+    if api_key not in api_keys: 
+        return {"error": "Invalid api key"}
     id = str(time.time())
-    tasks[id] = None
+    tasks[id) = None
     threading.thread(target=image_to_text, args=(id, image_data)).start()
     return {"id": id}
 
-
-// Endpoint for retrieving task result
-def get_result(id):
+# Endpoint for retrieving task result
+def get_result(api_key, id):
+    if api_key not in api_keys: 
+        return {"error": "Invalid api key"}
     result = tasks.get(id)
-    if result is none:
+    if result is None:
         return {"error": "Processing"}
     return result
 
-# Rending service
+# Running the service
 server = servlet.SimpleSQLServer(host='localhost', port=config.PORT)
 server.run()
