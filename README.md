@@ -48,11 +48,15 @@ create virtual env
 source venv/bin/activate ``
 conda env 
 
-3. Install dependencies: 
+3. Install Tesseract: 
+```
+For more information, see Tesseract Wiki: https://github.com/UB-Mannheim/tesseract/wiki 
+```
+4. Install dependencies: 
 ```
 python3 -m requirements.exe -e requirements.txt ``
 
-4. Run the application: 
+5. Run the application: 
 ```
 python3 src/image_to_text_service.py ``
 
