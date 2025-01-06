@@ -33,6 +33,27 @@ print(response.json())
 
 Implements use a background thread to process multiple images simultaneously. Example is provided in the codebase.
 
-## Configuration File
+## Installation Steps
 
-A configuration file was added to manage API keys, environment variables, and default ports. Check out the 'src/config.py' file.
+Follow these steps to setup the project:
+
+1. Clone the repository: 
+```
+git clone https://github.com/sn1p2r78/CaptchaXtract-standalone-v2
+```
+
+2. Virtual environment: 
+```
+create virtual env
+source venv/bin/activate ``
+conda env 
+
+3. Install dependencies: 
+```
+python3 -m requirements.exe -e requirements.txt ``
+
+4. Run the application: 
+```
+python3 src/image_to_text_service.py ``
+
+Now you're set up and ready to run the service!
