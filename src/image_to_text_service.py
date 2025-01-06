@@ -1,29 +1,40 @@
-## Image to Text Service with Multithreading
+## Image to Text Service with Integrations
 
-## Imports
+# Imports
 import threading
 import time
-from fastapi import FastAPI
-from petoc import img
-# lockfor for tasks results storage
+import json
+import servlet
+from config import Config
+
+# Configuration instance
+config = Config()
+
+# Storing tasks and using id to accomplish process
 tasks = {}
 
+def image_to_text(id, image_data):
+    ## Image to text processing for tasks using threads.
+    time.sleep(1)
+    tasks[id] = "Result text successfully processed"
+    return {} # Example status
 
-def image_to_text(image_data):
-    """ Simulated image to text conversion process."""
-    time.sleep(1) # Simulate processing
-    return "Result text from image" 
 
-# API endpoint: submit task
-def submit_task(image_file):
-    task_id = str(time.time())
-    tasks[task_id] = None
-    threading.thread(target=image_to_text, args=(image_file,)).start()
-    return {"task_id": task_id}
+// Endpoint for submiting a task
+def submit_task(image_data):
+    id = str(time.time())
+    tasks[id] = None
+    threading.thread(target=image_to_text, args=(id, image_data)).start()
+    return {"id": id}
 
-# API endpoint: get task result
-def get_result(task_id):
-    result = tasks.get(task_id)
-    if result is None:
-        return {"error": "The task is still processing"}
-    return {"result": result}
+
+// Endpoint for retrieving task result
+def get_result(id):
+    result = tasks.get(id)
+    if result is none:
+        return {"error": "Processing"}
+    return result
+
+# Rending service
+server = servlet.SimpleSQLServer(host='localhost', port=config.PORT)
+server.run()
